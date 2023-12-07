@@ -11,11 +11,11 @@ const tasks = [
   {title: "Assistir a um documentário interessante", type: "Normal"},
 ];
 
-function renderElements(){
+function renderElements(array){
   const list = document.querySelector("ul");
   list.innerHTML = ""
-  for(let i = 0; i < tasks.length; i++){
-    let task = tasks[i];
+  for(let i = 0; i < array.length; i++){
+    let task = array[i];
     const taskItem = createTaskItem(task)
     list.appendChild(taskItem)
   }
@@ -32,7 +32,7 @@ function createTaskItem(task){
     button.addEventListener("click", function (event) {
       const indice = tasks.indexOf(task);
       tasks.splice(indice, 1);
-      renderElements();
+      renderElements(tasks);
     })
 
     listItem.classList.add("task__item");
@@ -58,7 +58,7 @@ function createTaskItem(task){
     return listItem
 }
 
-renderElements();
+renderElements(tasks);
 
 const form = document.querySelector(".form__container");
 
@@ -75,6 +75,6 @@ form.addEventListener("submit", function (event) {
 
   tasks.push(newTask);
 
-  renderElements();
+  renderElements(tasks);
 
 });
